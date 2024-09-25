@@ -1,0 +1,69 @@
+<div class="container-fluid pt-5">
+    <div class="container">
+        <div class="text-center pb-2">
+
+            <h1 class="mb-4">ADD Cours</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 mb-5">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <form name="sentMessage" id="contactForm" [formGroup]="addCoursForm">
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="text" class="form-control" id="name" placeholder="Cours Name"
+                                formControlName="name" />
+                            <div
+                                *ngIf="addCoursForm.controls['name'].invalid && (addCoursForm.controls['name'].touched)">
+                            </div>
+                            <div *ngIf="addCoursForm.controls['name'].errors?.['required']">Cours Name is required
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="text" class="form-control" id="email" placeholder="Cours description"
+                                formControlName="description" />
+                            <div
+                                *ngIf="addCoursForm.controls['description'].invalid && (addCoursForm.controls['description'].touched)">
+                            </div>
+                            <div *ngIf="addCoursForm.controls['description'].errors?.['required']">Cours Description is
+                                required
+                            </div>
+
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="time" class="form-control" id="email" placeholder="Cours duration"
+                                formControlName="duration" />
+                            <div
+                                *ngIf="addCoursForm.controls['duration'].invalid && (addCoursForm.controls['duration'].touched)">
+                            </div>
+                            <div *ngIf="addCoursForm.controls['duration'].errors?.['required']">Cours duration is
+                                required
+                            </div>
+
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <Label>Select Teacher</Label>
+                            <select name="" class="form-control" id="email" formControlName="teacherId">
+                                <option value="" selected disabled>Select Teacher</option>
+
+                                <div
+                                    *ngIf="addCoursForm.controls['duration'].invalid && (addCoursForm.controls['duration'].touched)">
+                                </div>
+                                <div *ngIf="addCoursForm.controls['duration'].errors?.['required']">Cours duration is
+                                    required
+                                </div>
+                            </select>
+                        </div>
+                <div>
+                    <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton" (click)="addCours()">
+                        ADD
+                    </button>
+                </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,118 @@
+<div class="container-fluid pt-5">
+    <div class="container">
+        <div class="text-center pb-2">
+
+            <h1 class="mb-4" *ngIf="path=='/signupTeacher'">Signup Teacher</h1>
+            <h1 class="mb-4" *ngIf="path=='/signupParent'">Signup Parent</h1>
+            <h1 class="mb-4" *ngIf="path=='/signupStudent'">Signup Student</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 mb-5">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <form name="sentMessage" id="contactForm" [formGroup]="signupForm">
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="text" class="form-control" id="name" placeholder="Your First Name"
+                                formControlName="firstName" />
+                            <div
+                                *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].touched)">
+                                <div *ngIf="signupForm.controls['firstName'].errors?.['required']">First Name is
+                                    required</div>
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="text" class="form-control" id="name" placeholder="Your Last Name"
+                                formControlName="lastName" />
+                            <div
+                                *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].touched)">
+                                <div *ngIf="signupForm.controls['lastName'].errors?.['required']">Last Name is
+                                    required</div>
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="email" class="form-control" id="name" placeholder="Your Email"
+                                formControlName="email" />
+                            <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].touched)">
+                                <div *ngIf="signupForm.controls['email'].errors?.['required']">Email is
+                                    required</div>
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="tel" class="form-control" id="name" placeholder="Your telephone number"
+                                formControlName="tel" />
+                            <div *ngIf="signupForm.controls['tel'].invalid && (signupForm.controls['tel'].touched)">
+                                <div *ngIf="signupForm.controls['tel'].errors?.['required']">Tel is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;"*ngIf="path=='/signupParent'">
+                            <input type="tel" class="form-control" id="name" placeholder="Student telephone number"
+                                formControlName="tel" />
+                            <div *ngIf="signupForm.controls['tel'].invalid && (signupForm.controls['tel'].touched)">
+                                <div *ngIf="signupForm.controls['tel'].errors?.['required']">Tel is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="text" class="form-control" id="name" placeholder="Your Adress"
+                                formControlName="adress" />
+                            <div
+                                *ngIf="signupForm.controls['adress'].invalid && (signupForm.controls['adress'].touched)">
+                                <div *ngIf="signupForm.controls['adress'].errors?.['required']">Adress is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="password" class="form-control" id="email" placeholder="Your Password"
+                                formControlName="password" />
+                            <div
+                                *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].touched)">
+                                <div *ngIf="signupForm.controls['password'].errors?.['required']">Password is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 20px;"></div>
+                        <input type="text" class="form-control" id="email" placeholder="Your Speciality"
+                            formControlName="speciality" *ngIf="path=='/signupTeacher'"/>
+                        <div
+                            *ngIf="signupForm.controls['speciality'].invalid && (signupForm.controls['speciality'].touched)">
+                            <div *ngIf="signupForm.controls['speciality'].errors?.['required']">speciality is required
+                            </div>
+                        </div>
+
+                        <!-- upload file -->
+                        <div class="form-group">
+                            <input type="file" class="form-control" style="visibility: hidden;" #filePicker
+                                (change)="selectFile($event)">
+                            <!-- <input type="file" class="form-control" style="display: none;" #filePicker> -->
+                        </div>
+                        <div class="text-center"*ngIf="path=='/signupTeacher'">
+                            <button class="btn btn-success" (click)="filePicker.click()">Select your CV</button>
+                        </div>
+
+                        <!--end upload file -->
+                        <!-- upload file -->
+                        <div class="form-group">
+                            <input type="file" class="form-control" style="visibility: hidden;" #filePicker
+                                (change)="selectFile($event)">
+                            <!-- <input type="file" class="form-control" style="display: none;" #filePicker> -->
+                        </div>
+                        <div class="text-center"*ngIf="path=='/signupStudent'">
+                            <button class="btn btn-success" (click)="filePicker.click()">Select your photo</button>
+                        </div>
+
+                        <!--end upload file -->
+                        <div>
+                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton"
+                                (click)="signup()">
+                                Signup
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>

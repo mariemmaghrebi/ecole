@@ -1,0 +1,29 @@
+<div class="container-fluid pt-5">
+    <div class="container">
+        <div class="text-center pb-2">
+
+            <h1 class="mb-4">Search Teacher</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 mb-5">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <form name="sentMessage" id="contactForm" #searchForm="ngForm" (ngSubmit)="search()">
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="tel" class="form-control" id="name" placeholder="Speciality"
+                            [(ngModel)]="searchTeacher.speciality" [ngModelOptions]="{standalone:true}" />
+                        </div>
+                <div>
+                    <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton" >
+                        Search
+                    </button>
+                </div>
+                </form>
+                
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+</div>

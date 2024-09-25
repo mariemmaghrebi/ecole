@@ -1,0 +1,32 @@
+<table class="table col-12">
+  <thead class="text-center">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Descreption</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">
+   
+    <tr>
+      <th scope="row">2</th>
+      <td>test</td>
+      <td>test</td>
+      <td>test</td>
+      <td *ngIf="path=='/dashboardStudent'">
+        <button class="btn btn-success" style=" border-radius: 5px;" >Consult Rating</button>
+      </td>
+      <td *ngIf="path=='/dashboardAdmin'">
+        <button class="btn btn-success  ml-2 mr-2" style="border-radius: 5px;color:#ffffff;">Display</button>
+        <button class="btn btn-danger ml-2 mr-2" style=" border-radius: 5px;">Delete</button>
+      </td>
+      <td *ngIf="path=='/dashboardTeacher'">
+        <button class="btn btn-success ml-2 mr-2 " style="border-radius: 5px;color:#ffffff;">Display</button>
+        <button class="btn btn-danger ml-2 mr-2 " style=" border-radius: 5px;">Delete</button>
+      </td>
+    </tr>
+   
+  </tbody>
+</table>

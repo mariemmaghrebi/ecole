@@ -1,0 +1,44 @@
+
+<div class="container-fluid pt-5 pb-3">
+    <div class="container">
+        <div class="text-center pb-2">
+
+            <h1 class="mb-4" *ngIf="path=='/dashboardTeacher'">Teacher Dashboard</h1>
+            <h1 class="mb-4" *ngIf="path=='/dashboardAdmin'">Admin Dashboard</h1>
+        </div>
+        <div class="col-12 col-lg-12"></div>
+        <div class="palatin-tabs-content ">
+            <ul class="nav nav-tabs row text-center" id="navTabsDiv" role="tablist">
+                <li class="nav-item col-4">
+                    <a class="btn btn-outline-primary m-1 active" id="tab--1" data-toggle="tab" href="#tab1" role="tab"
+                        aria-controls="tab1" aria-selected="false" style="border-radius:30%;width: 150px;">Cours</a>
+                </li>
+                <li class="nav-item col-4" *ngIf="path=='/dashboardTeacher'">
+
+                </li>
+                <li class="nav-item col-4" *ngIf="path=='/dashboardAdmin'">
+                    <a class="btn btn-outline-primary m-1" id="tab--2" data-toggle="tab" href="#tab2" role="tab"
+                        aria-controls="tab2" aria-selected="false" style="border-radius:30%;width: 150px;">Students</a>
+                </li>
+
+                <li class="nav-item col-4" *ngIf="path=='/dashboardAdmin'">
+                    <a class="btn btn-outline-primary m-1" id="tab--3" data-toggle="tab" href="#tab3" role="tab"
+                        aria-controls="tab3" aria-selected="true" style="border-radius:30%;width: 150px;">Teacher</a>
+                </li>
+
+            </ul>
+            <div class="tab-content mb-100">
+                <div class="tab-pane fade show active row" id="tab1" role="tabpanel" aria-labelledby="tab--1">
+                    <app-cours-table></app-cours-table>
+                </div>
+                <div class="tab-pane fade row" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+                    <app-student-table></app-student-table>
+                </div>
+                <div class="tab-pane fade row" id="tab3" role="tabpanel" aria-labelledby="tab--3">
+                    <app-teacher-table></app-teacher-table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
