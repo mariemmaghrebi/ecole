@@ -46,11 +46,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="control-group" style="margin-bottom: 20px;"*ngIf="path=='/signupParent'">
+                        <div class="control-group" style="margin-bottom: 20px;" *ngIf="path=='/signupParent'">
                             <input type="tel" class="form-control" id="name" placeholder="Student telephone number"
-                                formControlName="tel" />
-                            <div *ngIf="signupForm.controls['tel'].invalid && (signupForm.controls['tel'].touched)">
-                                <div *ngIf="signupForm.controls['tel'].errors?.['required']">Tel is required
+                                formControlName="studentTel" />
+                            <div
+                                *ngIf="signupForm.controls['studentTel'].invalid && (signupForm.controls['studentTel'].touched)">
+                                <div *ngIf="signupForm.controls['studentTel'].errors?.['required']">Student Tel is
+                                    required
                                 </div>
                             </div>
                         </div>
@@ -72,43 +74,40 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="control-group" style="margin-bottom: 20px;"></div>
-                        <input type="text" class="form-control" id="email" placeholder="Your Speciality"
-                            formControlName="speciality" *ngIf="path=='/signupTeacher'"/>
-                        <div
-                            *ngIf="signupForm.controls['speciality'].invalid && (signupForm.controls['speciality'].touched)">
-                            <div *ngIf="signupForm.controls['speciality'].errors?.['required']">speciality is required
+                        <div class="control-group" style="margin-bottom: 20px;">
+                            <input type="text" class="form-control" id="email" placeholder="Your Speciality"
+                                formControlName="speciality" *ngIf="path=='/signupTeacher'" />
+                            <div
+                                *ngIf="signupForm.controls['speciality'].invalid && (signupForm.controls['speciality'].touched)">
+                                <div *ngIf="signupForm.controls['speciality'].errors?.['required']">speciality is
+                                    required
+                                </div>
                             </div>
+                            
+                                <span>{{msg}}</span>
+                            
                         </div>
+                            
+                            <!-- upload file -->
+                            <div class="form-group">
+                                <input type="file" class="form-control" style="visibility: hidden;" #filePicker
+                                    (change)="selectFile($event)">
+                                <!-- <input type="file" class="form-control" style="display: none;" #filePicker> -->
+                            </div>
+                            <div class="text-center" *ngIf="path=='/signupStudent'|| path=='/signupParent'">
+                                <button class="btn btn-success" (click)="filePicker.click()">Select your photo</button>
+                            </div>
+                            <div class="text-center" *ngIf="path=='/signupTeacher'">
+                                <button class="btn btn-success" (click)="filePicker.click()">Select your CV</button>
+                            </div>
 
-                        <!-- upload file -->
-                        <div class="form-group">
-                            <input type="file" class="form-control" style="visibility: hidden;" #filePicker
-                                (change)="selectFile($event)">
-                            <!-- <input type="file" class="form-control" style="display: none;" #filePicker> -->
-                        </div>
-                        <div class="text-center"*ngIf="path=='/signupTeacher'">
-                            <button class="btn btn-success" (click)="filePicker.click()">Select your CV</button>
-                        </div>
-
-                        <!--end upload file -->
-                        <!-- upload file -->
-                        <div class="form-group">
-                            <input type="file" class="form-control" style="visibility: hidden;" #filePicker
-                                (change)="selectFile($event)">
-                            <!-- <input type="file" class="form-control" style="display: none;" #filePicker> -->
-                        </div>
-                        <div class="text-center"*ngIf="path=='/signupStudent'">
-                            <button class="btn btn-success" (click)="filePicker.click()">Select your photo</button>
-                        </div>
-
-                        <!--end upload file -->
-                        <div>
-                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton"
-                                (click)="signup()">
-                                Signup
-                            </button>
-                        </div>
+                            <!--end upload file -->
+                            <div>
+                                <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton"
+                                    (click)="signup()">
+                                    Signup
+                                </button>
+                            </div>
                     </form>
                 </div>
             </div>

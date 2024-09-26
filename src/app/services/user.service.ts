@@ -9,7 +9,7 @@ export class UserService {
 
   constructor( private httpClient:HttpClient) { }
   addUser(teamObj:any,file:any){
-    return this.httpClient.post<{isAdded:boolean}>(this.userUel,teamObj);
+    return this.httpClient.post<{isAdded:boolean,msg:string}>(this.userUel,teamObj);
   }
   deleteUserById(id:any){
     return this.httpClient.delete<{isDeleted:boolean}>(`${this.userUel}/${id}`);
