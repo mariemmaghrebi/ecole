@@ -152,6 +152,60 @@ app.post("/users", multer({ storage: storageConfig }).single('img'), (req, res) 
         }
     });
 });
+// tratement logique:login
+app.post("/users/login", (req, res) => {
+    console.log('here into bl:login user', req.body); // Affiche les données envoyées dans la requête
+
+    // Recherche d'un utilisateur dans la base de données par numéro de téléphone
+    User.findOne({ tel: req.body.tel }).then(
+        (doc) => {
+            console.log('here user', doc); // Affiche l'utilisateur trouvé ou null si non trouvé
+
+            // Si l'utilisateur n'existe pas (le numéro de téléphone est incorrect)
+            if (!doc) {
+                res.json({ msg: 'Check your Password/Phone Number' }) // Retourne un message d'erreur
+            } 
+            // Si l'utilisateur est trouvé
+            else {
+                // Compare le mot de passe envoyé avec celui stocké dans la base de données (hashé)
+                bcrypt.compare(req.body.password, doc.password).then(
+                    (result) => {
+                        console.log('here result', result); // Affiche le résultat de la comparaison (true ou false)
+
+                        // Si le mot de passe est correct
+                        if (result) {
+                            // Création d'un objet utilisateur pour renvoyer certaines informations
+                            let connectedUser = {
+                                id: doc._id,
+                                firstName: doc.firstName,
+                                lastName: doc.lastName,
+                                role: doc.role,
+                                tel: doc.tel,
+                                speciality: doc.speciality,
+                                studentTel: doc.studentTel,
+                                adress: doc.adress,
+                                status: doc.status,
+                                img: doc.upload // Lien vers l'image de profil
+                            }
+
+                            // Génération d'un token JWT avec les informations de l'utilisateur
+                            let token = jwt.sign(connectedUser, secretKey, { expiresIn: '1h' }); // Le token expire après 1h
+
+                            // Retourne le token et confirme que la vérification du mot de passe est réussie
+                            res.json({ passwordCheck: true, user: token })
+                        }
+                        // Si le mot de passe est incorrect
+                        else {
+                            res.json({ msg: 'Check your Password/Phone Number' }) // Retourne un message d'erreur
+                        }
+
+                    }
+                )
+            }
+
+        }
+    )
+});
 
 
 // tratement logique:edit user
