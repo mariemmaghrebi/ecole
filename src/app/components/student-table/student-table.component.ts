@@ -15,7 +15,12 @@ usersTab:any=[];
   ngOnInit(): void {
     this.path = this.router.url;
     this.userService.getAllUsers().subscribe(
-      (response)=>{this.usersTab=response.t;
+      (response)=>{
+        for (let i=0;i<response.t.length;i++){
+          if (response.t[i].role=='student'){
+            this.usersTab.push(response.t[i]);
+          }
+        }
         
       }
     );

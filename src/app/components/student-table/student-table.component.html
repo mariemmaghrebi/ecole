@@ -11,50 +11,20 @@
       </tr>
     </thead>
     <tbody class="text-center">
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
+      <tr *ngFor="let elt of usersTab">
+        <th scope="row">{{elt._id}}</th>
+        <td>{{elt.firstName}}</td>
+        <td>{{elt.lastName}}</td>
+        <td>{{elt.email}}</td>
+        <td>{{elt.tel}}</td>
+        <td>{{elt.adress}}</td>
+        
         <td >
-          <button class="btn btn-success  ml-2 mr-2" style="border-radius: 5px;color:#ffffff;">Display</button>
-          
+          <button class="btn btn-primary  " style="border-radius: 5px;color:#ffffff;">Display</button>
           <button class="btn btn-danger  ml-2 mr-2" style=" border-radius: 5px;">Delete</button>
-          <button class="btn btn-primary  ml-2 mr-2" style=" border-radius: 5px;" >Assign Course</button>
+          <button class="btn btn-success  " style=" border-radius: 5px;" >Assign Course</button>
 
       </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>@fat</td>
-        <td>@fat</td>
-        <td >
-          <button class="btn btn-success ml-2 mr-2 " style="border-radius: 5px;color:#ffffff;">Display</button>
-          
-          <button class="btn btn-danger  ml-2 mr-2" style=" border-radius: 5px;" >Delete</button>
-          <button class="btn btn-primary  ml-2 mr-2" style=" border-radius: 5px;" >Assign Course</button>
-
-      </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td >Larry the Bird</td>
-        <td>@twitter</td>
-        <td>@twitter</td>
-        <td>@twitter</td>
-        <td>@twitter</td>
-        <td >
-          <button class="btn btn-success  ml-2 mr-2" style="border-radius: 5px;color:#ffffff;">Display</button>
-         
-          <button class="btn btn-danger ml-2 mr-2" style=" border-radius: 5px;" >Delete</button>
-          <button class="btn btn-primary  ml-2 mr-2" style=" border-radius: 5px;" >Assign Course</button>
-
-      </td>
-      </tr>
+    </tr>
     </tbody>
   </table>

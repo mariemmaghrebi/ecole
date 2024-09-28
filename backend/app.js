@@ -164,7 +164,7 @@ app.post("/users/login", (req, res) => {
             // Si l'utilisateur n'existe pas (le numéro de téléphone est incorrect)
             if (!doc) {
                 res.json({ msg: 'Check your Password/Phone Number' }) // Retourne un message d'erreur
-            } 
+            }
             // Si l'utilisateur est trouvé
             else {
                 // Compare le mot de passe envoyé avec celui stocké dans la base de données (hashé)
@@ -209,69 +209,67 @@ app.post("/users/login", (req, res) => {
 
 
 // tratement logique:edit user
-app.put("/users", (req, res) => {
-    console.log('here into bl:Add edit user', req.body);
-    let newUser = req.body;
-    let pos = usersTab.findIndex((elt) => elt.id == newUser.id);
-    usersTab[pos] = newUser;
-    res.json({ msg: 'ok' });
+app.put("/users/:id", (req, res) => {
+    const userId = req.params.id; // ID du teacher
+
+    // Met à jour un utilisateur dans la base de données en fonction de son ID (_id)
+    // L'objet `newUser` contient les nouvelles informations de l'utilisateur
+    User.updateOne({ _id: userId },{ $set: { status: 'validated' } }).then(
+        (result) => {
+            // Log pour afficher le résultat de la mise à jour (nombre de documents modifiés)
+            console.log('here result after update', result);
+
+            // Vérification si la mise à jour a réussi (vérifie si un document a été modifié)
+            if (result.nModified == 1) {
+                // Si la mise à jour a bien modifié un utilisateur, renvoie un message de succès
+                res.json({ msg: 'ok' });
+            }
+            else {
+                // Si aucun document n'a été modifié, renvoie un message indiquant l'échec de la mise à jour
+                res.json({ msg: 'NotOk' });
+            }
+        })
+});
+app.get("/users", (req, res) => {
+    // Recherche tous les utilisateurs avec le rôle 'teacher'
+    User.find({ role: 'teacher' }).then(
+        (teachers) => {
+            res.json({ teachers });
+        }
+    )
 });
 // tratement logique:get all users
 app.get("/users", (req, res) => {
-    console.log('here into bl:get user');
-    res.json({ t: usersTab });
+    console.log('here into bl:get userq');
+    User.find().then(
+        (docs) => {
+            console.log('here all users from collection', docs);
+            res.json({ t: docs });
+        }
+    )
 });
 // tratement logique:get user by id
 app.get("/users/:id", (req, res) => {
-    console.log('here into bl:get user by id', req.params.id);
-    let userId = req.params.id;
-    let user = usersTab.find((elt) => elt.id == userId);
-    res.json({ user: user })
+    console.log('here into bl:get user', req.params.id);
+    User.findById(req.params.id).then((doc) => {
+        console.log('here doc', doc);
+        res.json({ user: doc })
+    })
 });
 // tratement logique:delete user by id
 app.delete("/users/:id", (req, res) => {
     console.log('here into bl:get user', req.params.id);
-    let userId = req.params.id;
-    let pos = usersTab.findIndex((elt) => elt.id == userId);
-    console.log('here position', pos);
-    usersTab.splice(pos, 1);
-    res.json({ isDeleted: true })
-});
-// tratement logique:add course
-app.post("/courses", (req, res) => {
-    console.log('here into bl:Add course', req.body);
-    let course = req.body;
-    coursesTab.push(course);
-    res.json({ isAdded: true });
-});
-// tratement logique:edit course
-app.put("/courses", (req, res) => {
-    console.log('here into bl:Add edit course', req.body);
-    let newCourse = req.body;
-    let pos = coursesTab.findIndex((elt) => elt.id == newCourse.id);
-    coursesTab[pos] = newCourse;
-    res.json({ msg: 'ok' });
-});
-// tratement logique:get all courses
-app.get("/courses", (req, res) => {
-    console.log('here into bl:get course');
-    res.json({ t: coursesTab });
-});
-// tratement logique:get course by id
-app.get("/courses/:id", (req, res) => {
-    console.log('here into bl:get course by id', req.params.id);
-    let courseId = req.params.id;
-    let course = coursesTab.find((elt) => elt.id == courseId);
-    res.json({ course: course })
-});
-// tratement logique:delete course by id
-app.delete("/courses/:id", (req, res) => {
-    console.log('here into bl:get course', req.params.id);
-    let courseId = req.params.id;
-    let pos = coursesTab.findIndex((elt) => elt.id == courseId);
-    console.log('here position', pos);
-    coursesTab.splice(pos, 1);
-    res.json({ isDeleted: true })
+    User.deleteOne({ _id: req.params.id }).then(
+        (result) => {
+            console.log('here result after delete', result);
+            if (result.deletedCount == 1) {
+                res.json({ isDeleted: true });
+            }
+            else {
+                res.json({ isDeleted: false });
+            }
+        }
+    )
 });
 // make app importable from another files
 module.exports = app;

@@ -28,9 +28,6 @@ export class UserService {
   getAllUsers(){
     return this.httpClient.get<{t: any}>(this.userUrl);
   }
-  editUser(newTeamObj:any){
-    return this.httpClient.put<{msg:String}>(this.userUrl,newTeamObj);
-  }
   getUserById(id:any){
     return this.httpClient.get<{user:any}>(`${this.userUrl}/${id}`);
   }
@@ -38,4 +35,11 @@ export class UserService {
    loginUser(userObj:any){
     return this.httpClient.post<{passwordCheck:boolean,msg:string,user:any}>(this.userUrl+'/login',userObj);
   }
+  validateTeacher(id:any) {
+    return this.httpClient.put<{msg:string}>(`${this.userUrl}/${id}`,{});
+  }
+  getAllTeachers() {
+    return this.httpClient.get<{teachers:any}>(`${this.userUrl}`);
+  }
+  
 }

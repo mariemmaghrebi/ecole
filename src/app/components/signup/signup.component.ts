@@ -50,7 +50,7 @@ signup() {
 
         // Si l'utilisateur est ajouté avec succès, redirige vers la page d'accueil
         if (response.isAdded == true) {
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         }
        
         else {

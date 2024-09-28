@@ -43,14 +43,13 @@ errorMessage:string='';
             // Redirige vers le tableau de bord Admin
             this.router.navigate(['/dashboardAdmin']);
           } else if (decoded.role == 'teacher' ) {
-            if( decoded.status=="Validated"){
-              // Redirige vers le tableau de bord Enseignant
-            this.router.navigate(['/dashboardTeacher']);
-            }
-            else{
-              this.errorMessage='You are  not Validated'
-            }
-            
+              if( decoded.status=="validated"){
+                // Redirige vers le tableau de bord Enseignant
+              this.router.navigate(['/dashboardTeacher']);
+              }
+              else{
+                this.errorMessage='You are  not Validated'
+              }
           } else if (decoded.role == 'student') {
             // Redirige vers le tableau de bord Étudiant
             this.router.navigate(['/dashboardStudent']);

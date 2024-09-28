@@ -19,14 +19,17 @@
         <button class="btn btn-success" style=" border-radius: 5px;" >Consult Rating</button>
       </td>
       <td *ngIf="path=='/dashboardAdmin'">
-        <button class="btn btn-success  ml-2 mr-2" style="border-radius: 5px;color:#ffffff;">Display</button>
+        <button class="btn btn-primary  ml-2 mr-2 " style="border-radius: 5px;color:#ffffff;">Display</button>
         <button class="btn btn-danger ml-2 mr-2" style=" border-radius: 5px;">Delete</button>
       </td>
       <td *ngIf="path=='/dashboardTeacher'">
-        <button class="btn btn-success ml-2 mr-2 " style="border-radius: 5px;color:#ffffff;">Display</button>
+        <button class="btn btn-primary  ml-2 mr-2 " style="border-radius: 5px;color:#ffffff;">Display</button>
         <button class="btn btn-danger ml-2 mr-2  " style=" border-radius: 5px;">Delete</button>
       </td>
     </tr>
-   
+
+    <tr *ngIf="path=='/dashboardTeacher'">
+      <td colspan="5"><button class="btn btn-success text-center" style=" border-radius: 5px;"  >Add Course</button></td>
+    </tr>
   </tbody>
 </table>
